@@ -26,7 +26,7 @@
 	$: methodology = visualisations.filter(d=>d.section === 'methodology')
 </script>
 
-<div class="bg-primary">
+<div class="bg-primary" style="background-image:url('{dli_home}')">
 	<div class="container text-white">
 		<div class="row">
 			<div class="col-12 py-4 position-relative headerImg">
@@ -97,6 +97,6 @@
 		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: cover;
-		height: 300px;
+		height: 350px;
 	}
 </style>
