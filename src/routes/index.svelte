@@ -21,22 +21,24 @@
 	import dli_home from '$lib/assets/dli_home.png';
 	export let visualisations;
 	export let images;
+
+	$: narrative = visualisations.filter(d=>d.section === 'narrative')
+	$: methodology = visualisations.filter(d=>d.section === 'methodology')
 </script>
 
-<div class="bg-dark">
+<div class="bg-primary">
 	<div class="container text-white">
 		<div class="row">
-			<div class="col-12 text-center py-5">
-				<img src={dli_home} class="mb-3" alt="dli_logo" width="175" height="auto" />
-				<h2>Digital Lighthouse Initiative</h2>
-				<p>Monitoring Hate Speech Using Big Data and Machine Learning</p>
+			<div class="col-12 py-4 position-relative headerImg">
+				<h2 class="fs-1">A New Social Contract for Iraq</h2>
+				<p>Big Data Analysis on Twitter</p>
 			</div>
 		</div>
 	</div>
 </div>
 
 <div class="container">
-	<div class="row py-4 mb-3 border-bottom border-light">
+	<div class="row py-4 mb-3">
 		<div class="col-12 col-md-3">
 			<h6 class="text-info">Introduction</h6>
 		</div>
@@ -57,12 +59,12 @@
 		</div>
 	</div>
 	<div class="row my-2">
-		<div class="col-12 col-md-3">
-			<h6 class="text-info">Visualisations</h6>
+		<div class="col-12">
+			<h5 class="text-primary border-top border-light pt-3">Narrative Visualisations</h5>
 		</div>
 	</div>
 	<div class="row mb-4 gy-4">
-		{#each visualisations as visualisation, i}
+		{#each narrative as visualisation, i}
 			<div class="col-12 col-md-3">
 				<VizCard
 					{...visualisation}
@@ -72,4 +74,29 @@
 			</div>
 		{/each}
 	</div>
+	<div class="row my-2">
+		<div class="col-12">
+			<h5 class="text-primary border-top border-light pt-3">Methodology and Twitter Demographics</h5>
+		</div>
+	</div>
+	<div class="row mb-4 gy-4">
+		{#each methodology as visualisation, i}
+			<div class="col-12 col-md-3">
+				<VizCard
+					{...visualisation}
+					thumb_path={images[`./_images/${visualisation.thumb}`].default}
+					number={i + narrative.length}
+				/>
+			</div>
+		{/each}
+	</div>
 </div>
+
+<style>
+	.headerImg{
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 300px;
+	}
+</style>

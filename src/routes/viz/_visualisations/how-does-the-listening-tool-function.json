@@ -1,20 +1,15 @@
 {
-    "title":"Data preparation pipeline",
+    "title":"How does the listening tool function?",
     "desc":"Lorem ipsum",
-    "thumb":"data-preparation-pipeline.png",
-    "type":"static",
+    "thumb":"mean-differences-on-key-dimensions.png",
     "sections":[
-        {
-            "title":"Data preparation pipeline using Twitter Public API",
+        {"title":"Title one",
             "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
-            "img":"pipeline1.png"
+            "img":"coding-tree.png"
         },
-        {
-            "title":"Data preparation pipeline using Global Pulse",
+        {"title":"Title two",
             "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
-            "img":"pipeline2.png"
+            "img":"coding-tree.png"
         }
     ]
-
-
 }

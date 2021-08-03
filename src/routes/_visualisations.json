@@ -1,11 +1,9 @@
 {
     "visualisations":[
-        {"route":"/viz/coding-tree", "title":"Hate Speech Coding Tree", "thumb":"hate-speech-coding.png"},
-        {"route":"/viz/data-preparation-pipeline", "title":"Data preparation pipeline", "thumb":"data-preparation-pipeline.png"},
-        {"route":"/viz/data-overview", "title":"Data overview", "thumb":"data-overview.png"},
-        {"route":"/viz/mean-differences-on-key-dimensions", "title":"Mean differences on key dimensions", "thumb":"mean-differences-on-key-dimensions.png"},
-        {"route":"/viz/word-frequencies-around-key-events","title":"Word frequencies around key events", "thumb":"word-frequencies-around-key-events.png"},
-        {"route":"/viz/temporal-network", "title":"Temporal network analysis", "thumb":"temporal-network-analysis.png"},
-        {"route":"/viz/emotions-across-timelines-and-twitterspheres", "title":"Emotions across timelines and Twitterspheres", "thumb":"emotions-across-timelines-and-twitterspheres.png"}  
+        {"route":"/viz/word-frequencies-around-core-grievances","title":"Word Frequencies around Core Grievances", "thumb":"word-frequencies-around-key-events.png","section":"narrative"},
+        {"route":"/viz/emotions-across-timelines-and-twitterspheres", "title":"Emotions across timelines and Twitterspheres", "thumb":"emotions-across-timelines-and-twitterspheres.png","section":"narrative"},
+        {"route":"/viz/tree-of-core-grievances-and-future-outlook", "title":"Tree of Core Grievances and Future Outlook", "thumb":"hate-speech-coding.png", "section":"methodology"},
+        {"route":"/viz/how-does-the-listening-tool-function", "title":"How does the listening tool function?", "thumb":"hate-speech-coding.png", "section":"methodology"},
+        {"route":"/viz/un-data-policy-and-data-pipeline", "title":"UN Data Policy and Data Pipeline", "thumb":"hate-speech-coding.png", "section":"methodology"}
     ]
 }

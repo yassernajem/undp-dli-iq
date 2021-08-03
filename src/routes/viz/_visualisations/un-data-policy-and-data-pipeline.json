@@ -1,17 +1,15 @@
 {
-    "title":"Differences between tweets in arabic and french on key dimensions",
+    "title":"UN Data Policy and Data Pipeline",
     "desc":"Lorem ipsum",
     "thumb":"mean-differences-on-key-dimensions.png",
     "sections":[
-        {
-            "title":"Emotions",
+        {"title":"Title one",
             "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
-            "img":"emotions.png"
+            "img":"coding-tree.png"
         },
-        {
-            "title":"Valence",
+        {"title":"Title two",
             "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
-            "img":"valence.png"
+            "img":"coding-tree.png"
         }
     ]
 }
