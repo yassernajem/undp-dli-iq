@@ -1,0 +1,20 @@
+{
+    "title":"Data preparation pipeline",
+    "desc":"Lorem ipsum",
+    "thumb":"data-preparation-pipeline.png",
+    "type":"static",
+    "sections":[
+        {
+            "title":"Data preparation pipeline using Twitter Public API",
+            "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
+            "img":"pipeline1.png"
+        },
+        {
+            "title":"Data preparation pipeline using Global Pulse",
+            "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
+            "img":"pipeline2.png"
+        }
+    ]
+
+
+}

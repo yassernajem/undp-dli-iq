@@ -1,0 +1,17 @@
+{
+    "title":"Differences between tweets in arabic and french on key dimensions",
+    "desc":"Lorem ipsum",
+    "thumb":"mean-differences-on-key-dimensions.png",
+    "sections":[
+        {
+            "title":"Emotions",
+            "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
+            "img":"emotions.png"
+        },
+        {
+            "title":"Valence",
+            "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
+            "img":"valence.png"
+        }
+    ]
+}
