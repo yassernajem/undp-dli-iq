@@ -3,5 +3,5 @@ node_modules
 /.svelte-kit
 /package
 /functions
-/build
+build/
 .vscode
