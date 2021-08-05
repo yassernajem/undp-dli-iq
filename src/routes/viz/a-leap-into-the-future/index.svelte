@@ -34,8 +34,10 @@
 	let w;
 	let h;
 
-	let languages = Object.keys(emo).sort();
-	let selectedLanguage = languages[0];
+	let gender = Object.keys(emo)
+	.sort();
+
+	let selectedGender = gender[0];
 
 	let macroCategories = [
 		'all',
@@ -46,7 +48,6 @@
 		)
 	];
 	let selectedMacroCategory = macroCategories[0];
-	let categories = [...new Set(emo[selectedLanguage].map((d) => d.dimension))];
 
 	const emotionsGroup = groups(
 		Object.values(emo).flat(),
@@ -65,7 +66,7 @@
 		})
 		.flat();
 
-	$: data = emo[selectedLanguage]
+	$: data = emo[selectedGender]
 		.map((d) => {
 			return { ...d, date: new Date(d.date) };
 		})
@@ -101,16 +102,11 @@
 		<div class="row border-bottom py-2">
 			<div class="col-md-3">
 				<div class="mb-3">
-					<label for="language" class="form-label">Language</label>
-					<select
-						bind:value={selectedLanguage}
-						class="form-select"
-						id="language"
-						aria-label="Language"
-					>
-						{#each languages as language}
-							<option value={language}>
-								{language}
+					<label for="gender" class="form-label">Gender</label>
+					<select bind:value={selectedGender} class="form-select" id="gender" aria-label="gender">
+						{#each gender as g}
+							<option value={g}>
+								{g}
 							</option>
 						{/each}
 					</select>

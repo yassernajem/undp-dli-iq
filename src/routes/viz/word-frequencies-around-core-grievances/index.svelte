@@ -154,7 +154,7 @@
 		</div>
 		<div class="row py-2 gx-0">
 			{#each days as day}
-				<div class="col-auto col-md">
+				<div class="col">
 					<button
 						on:click={() => handleDays(day)}
 						type="button"
