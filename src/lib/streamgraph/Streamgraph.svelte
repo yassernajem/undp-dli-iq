@@ -1,23 +1,32 @@
 <script>
 	import {
+		select,
 		schemePaired,
+		groups,
 		rollup,
+		rollups,
 		stack,
 		stackOffsetNone,
 		scaleTime,
 		scaleLinear,
+		scaleLog,
 		min,
 		max,
 		area,
 		scaleOrdinal,
 		timeFormat,
-		timeDay
+		timeDay,
+		utcDay,
+		extent,
+		curveStep
 	} from 'd3';
+	import { Tooltip, Popover } from 'sveltestrap';
 	import { getContext } from 'svelte';
 	export let data = [];
+	export let dataEvents = [];
 	export let width;
 	export let height;
-	export let groupColors;
+	export let groupColors = [];
 	export let view = 'stackOffsetNone';
 
 	const offset = {
@@ -29,41 +38,66 @@
 	$: chartWidth = width - margin.left - margin.right;
 	$: chartHeight = height - margin.top - margin.bottom;
 
-	$: streams = [...new Set(data.map((d) => d.Category))];
-	$: groups = rollup(
+	$: xScale = scaleTime().domain($brushExtent).range([0, chartWidth]);
+
+	$: xScaleUtils = scaleTime()
+		.domain(extent(data, (d) => d.date))
+		.range([0, chartWidth]);
+
+	$: streams = [...new Set(data.map((d) => d.dimension))];
+
+	$: groupsData = rollups(
 		data,
 		(v) => {
-			const local = rollup(
+			const local = rollups(
 				v,
 				(z) => z[0].frequency,
-				(d) => d.Category
+				(d) => d.dimension
 			);
 			return local;
 		},
 		(d) => d.date
 	);
 
+	$: dataFilled = mergeByDate(
+		xScaleUtils.ticks(utcDay).map((d) => {
+			return [d, []];
+		}),
+		groupsData,
+		0
+	);
+
+	$: dataEventsGrouped = groups(dataEvents, (d) => d.date);
+
 	$: series = stack()
 		.keys(streams)
 		.value((data, key) => {
-			return data[1].has(key) ? data[1].get(key) : 0;
+			const elm = data[1].find((d) => d[0] === key);
+			return elm ? elm[1] : 0;
 		})
-		.offset(offset[view])(groups);
-
-	$: xScale = scaleTime().domain($brushExtent).range([0, chartWidth]);
+		.offset(offset[view])(dataFilled);
 
 	$: yScale = scaleLinear()
-		.domain([min(series, (d) => min(d, (d) => d[0])), max(series, (d) => max(d, (d) => d[1]))])
+		.domain([0, max(series, (d) => max(d, (d) => d[1]))])
 		.range([chartHeight, 0]);
 
+	// alternative
+	// $: yScale = scaleLog()
+	// .clamp(true)
+	// .domain([1, max(series, (d) => max(d, (d) => d[1]))])
+	// .range([chartHeight, 0]);
+
+	// todo fix color scale -> other category can be in more macro category
 	$: colorScale = scaleOrdinal()
 		.domain(groupColors.map((d) => d.category))
 		.range(groupColors.map((d) => d.color.formatHex()));
 
 	$: areaStack = area()
+		//.defined((d) => !isNaN(d[1]))
 		.x((d) => xScale(d.data[0]))
 		.y0((d) => yScale(d[0]))
-		.y1((d) => yScale(d[1]));
+		.y1((d) => yScale(d[1]))
+		.curve(curveStep);
 
 	$: xTicks = xScale.ticks();
 
@@ -88,6 +122,14 @@
 		)[0];
 	}
 
+	function raise(e) {
+		select(e.target).raise();
+	}
+
+	function lower(e) {
+		select(e.target).lower();
+	}
+
 	function stackOffsetSplit(series, order) {
 		let n = series.length;
 		if (!n) return;
@@ -99,6 +141,13 @@
 				s1[j][1] += s1[j][0] = s0Max + padding;
 			}
 		}
+	}
+
+	function mergeByDate(a1, a2, prop = 'x') {
+		return a1.map((itm) => ({
+			...itm,
+			...a2.find((item) => item[prop].getTime() === itm[prop].getTime() && item)
+		}));
 	}
 </script>
 
@@ -115,12 +164,21 @@
 					on:mouseout={onMouseout}
 					on:mousemove={(e) => onMove(e, stream)}
 				/>
-				<!-- <g transform={`translate(0,${-yScaleSplit(stream.key)})`}>
-				<path d={areaStackSplit(stream)} fill={colorScale(stream.key)} />
-			</g> -->
 			{/each}
 		</g>
-
+		<g transform={`translate(${margin.left}, ${margin.top / 2})`}>
+			{#each dataEventsGrouped as eventG, i}
+				<circle
+					id={`event_${i}`}
+					class="event"
+					cx={xScale(eventG[0])}
+					cy={0}
+					r={3 * eventG[1].length}
+					on:mouseover={raise}
+					on:mouseout={lower}
+				/>
+			{/each}
+		</g>
 		<g transform="translate({margin.left}, {chartHeight + margin.top})">
 			{#each xTicks as x, i}
 				<g transform="translate({xScale(x)},0)">
@@ -172,13 +230,28 @@
 					class="outline"
 				>
 					<tspan class="fw-bold">
-						{selectedData.data[1].get(pathOver)}
+						{selectedData.data[1].find((d) => d[0] === pathOver)
+							? selectedData.data[1].find((d) => d[0] === pathOver)[1]
+							: 'missing'}
 					</tspan>
 				</text>
 			{/if}
 		</g>
 	{/if}
 </svg>
+{#each dataEventsGrouped as eventG, i}
+	<Popover
+		container="body"
+		title={timeFormat('%Y-%m-%d')(eventG[0])}
+		target={`event_${i}`}
+		trigger="hover"
+		placement={'top'}
+	>
+		{#each eventG[1] as event}
+			<p>{event.event}</p>
+		{/each}
+	</Popover>
+{/each}
 
 <style>
 	.stream {
@@ -208,5 +281,14 @@
 		paint-order: stroke;
 		stroke: white;
 		stroke-width: 2;
+	}
+
+	.event {
+		fill: var(--bs-primary);
+		stroke: white;
+	}
+
+	.event:hover {
+		stroke: black;
 	}
 </style>

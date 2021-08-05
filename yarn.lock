@@ -57,10 +57,10 @@
   resolved "https://registry.yarnpkg.com/@ibm/plex/-/plex-5.2.1.tgz#c454506b38f69bd97bcb71f1810e5c007593a3d2"
   integrity sha512-ASrHZCl+ts1ysXN8kknv7iuTO1s6Dz0FCPDo0tFzFkvP3XSgKbZ4ml7zgGdlXKR6uEbMr/nt4dQVLrOQn6j2Ug==
 
-"@popperjs/core@^2.6.0":
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.9.2.tgz#adea7b6953cbb34651766b0548468e743c6a2353"
-  integrity sha512-VZMYa7+fXHdwIq1TDhSXoVmSPEGM/aa+6Aiq3nVVJ9bXr24zScr+NlKFKC3iPljA7ho/GAZr+d2jOf5GIRC30Q==
+"@popperjs/core@^2.9.2":
+  version "2.9.3"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.9.3.tgz#8b68da1ebd7fc603999cf6ebee34a4899a14b88e"
+  integrity sha512-xDu17cEfh7Kid/d95kB6tZsLOmSWKCZKtprnhVepjsSaCij+lM3mItSJDuuHDMbCWTh8Ejmebwb+KONcCJ0eXQ==
 
 "@rollup/pluginutils@^4.1.1":
   version "4.1.1"
@@ -1490,12 +1490,12 @@ svelte@^3.34.0:
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.41.0.tgz#2009fd6681453ffb8b5aaa57f4a89a8be3dedd78"
   integrity sha512-X9/lnTcRBCrMdyFBVjfmqy1T2vyN8ejUE1OfbWSccc2Z42Amn3ab3XdBgVl+oDkZvzPfPMoxo6CEbWca7pXOew==
 
-sveltestrap@5.0.0-beta.3-1:
-  version "5.0.0-beta.3-1"
-  resolved "https://registry.yarnpkg.com/sveltestrap/-/sveltestrap-5.0.0-beta.3-1.tgz#dd1ca3e236713ee9c0380881d6357c4c58625d27"
-  integrity sha512-X+mjDAtD2PRuMzPO1wcWMncapokWaU+bKcDwSwZCPSgSa79SPOVl7mAbEnmy6PxpVwTvdQt+swtLz+MXrRxtxQ==
+sveltestrap@^5.0.0:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/sveltestrap/-/sveltestrap-5.5.1.tgz#829a9cad0845de6c863fa92ed21026aa27c569b9"
+  integrity sha512-RfxmMHad4YQJhOVR5sroMhcJlpPe3YdFm61FBz5zxAk4eJsa2xsjmqTci4Qws3Qn8G5pNL16AzhKnkSIIOM7kQ==
   dependencies:
-    "@popperjs/core" "^2.6.0"
+    "@popperjs/core" "^2.9.2"
 
 table@^6.0.9:
   version "6.7.1"

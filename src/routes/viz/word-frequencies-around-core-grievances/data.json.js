@@ -1,21 +1,23 @@
-import fs from "fs"
-import {rows} from './_circlepack.json';
+import { tsvParse } from 'd3-dsv';
+import data from './_circlepack.tsv?raw';
 
-// export async function get() {
-
-//   const csv = fs.readFileSync('./src/routes/viz/_data/circlepack.tsv', 'utf-8')
-//     return {
-//       body:csv,
-//       headers: {
-//         'Content-Type': 'text/plain'
-//       }
-//     };
-//   }
+const fieldsToExclude = ['lang', 'event', 'word'];
+const parsedData = tsvParse(data, (d) => {
+	const elm = {};
+	for (const property in d) {
+		if (fieldsToExclude.includes(property)) {
+			elm[property] = d[property];
+		} else {
+			elm[property] = +d[property];
+		}
+	}
+	return elm;
+});
 
 export async function get() {
-  return {
-    body: {
-      rows
-    },
-  };
+	return {
+		body: {
+			rows: parsedData
+		}
+	};
 }

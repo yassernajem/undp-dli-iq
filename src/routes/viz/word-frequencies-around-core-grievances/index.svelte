@@ -49,6 +49,7 @@
 
 	let languages = Array.from(dataMap, (d) => d[0]);
 	let events = Array.from(dataMap.get(selectedLanguage), (d) => d[0]);
+
 	const headers = [
 		'-7',
 		'-6',

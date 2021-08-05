@@ -12,14 +12,17 @@
 		return {
 			props: {
 				emotions: dataTable.emotions,
-				info: info.data
+				info: info.data,
+				tweets: dataTable.tweets,
+				events: dataTable.events,
+				emo: dataTable.emo
 			}
 		};
 	}
 </script>
 
 <script>
-	import { extent, groups, schemeTableau10, color } from 'd3';
+	import { extent, groups, schemeTableau10, color, ascending } from 'd3';
 	import Streamgraph from '$lib/streamgraph/Streamgraph.svelte';
 	import LinechartStream from '$lib/LinechartStream.svelte';
 	import PageIntro from '$lib/PageIntro.svelte';
@@ -27,22 +30,31 @@
 	import { writable } from 'svelte/store';
 	export let emotions;
 	export let info;
+	export let emo;
+	export let events;
+	export let tweets;
+
 	let w;
 	let h;
-	let languages = Object.keys(emotions);
+
+	let languages = Object.keys(emo).sort();
 	let selectedLanguage = languages[0];
 
 	let macroCategories = [
 		'all',
-		...new Set(emotions[selectedLanguage].evolution.map((d) => d.Macrocategory))
+		...new Set(
+			Object.values(emo)
+				.flat()
+				.map((d) => d.macro_dimension)
+		)
 	];
 	let selectedMacroCategory = macroCategories[0];
-	let categories = [...new Set(emotions[selectedLanguage].evolution.map((d) => d.Category))];
+	let categories = [...new Set(emo[selectedLanguage].map((d) => d.dimension))];
 
 	const emotionsGroup = groups(
-		[...emotions['ar'].evolution, ...emotions['fr'].evolution],
-		(d) => d.Macrocategory,
-		(d) => d.Category
+		Object.values(emo).flat(),
+		(d) => d.macro_dimension,
+		(d) => d.dimension
 	);
 
 	const groupColors = emotionsGroup
@@ -50,22 +62,27 @@
 			const mainColor = schemeTableau10[i];
 			const step = 1 / d[1].length;
 			const categories = d[1].map((c, l) => {
-				return { category: c[0], color: color(mainColor).brighter(l * step) };
+				return { category: c[0], macro_category: d[0], color: color(mainColor).brighter(l * step) };
 			});
 			return categories;
 		})
 		.flat();
 
-	$: data = emotions[selectedLanguage].evolution
+	$: data = emo[selectedLanguage]
 		.map((d) => {
 			return { ...d, date: new Date(d.date) };
 		})
 		.filter((d) =>
-			selectedMacroCategory !== 'all' ? selectedMacroCategory === d.Macrocategory : true
-		);
+			selectedMacroCategory !== 'all' ? selectedMacroCategory === d.macro_dimension : true
+		)
+		.sort((a, b) => ascending(a.date, b.date));
 
-	$: dataLinechart = emotions[selectedLanguage].valid.map((d) => {
-		return { y: d.value, x: new Date(d.Date) };
+	$: dataLinechart = tweets.map((d) => {
+		return { y: d.tweets_count, x: new Date(d.date) };
+	});
+
+	$: dataEvents = events.map((d) => {
+		return { date: new Date(d.date), event: d.event };
 	});
 
 	$: setContext(
@@ -148,13 +165,13 @@
 		<div class="row flex-grow-1 flex-shrink-1 overflow-hidden" bind:clientHeight={h}>
 			<div class="col-12">
 				<div bind:clientWidth={w} class="w-100 h-100">
-					<Streamgraph width={w} height={h} {data} {groupColors} {view} />
+					<Streamgraph width={w} height={h} {data} {groupColors} {view} {dataEvents} />
 				</div>
 			</div>
 		</div>
 		<div class="row py-2 border-top">
 			<div class="col-12">
-				<p class="text-muted mb-0"><small>Valid tweets</small></p>
+				<p class="text-muted mb-0"><small>Total tweets</small></p>
 				<LinechartStream width={w} data={dataLinechart} />
 			</div>
 		</div>
