@@ -3,7 +3,7 @@
 	import Pack from './pack.js';
 	import Circle from '$lib/circlepack/Circle.svelte';
 	import Linechart from '$lib/Linechart.svelte';
-	import * as hash from 'object-hash'
+	import hash from 'object-hash';
 	export let data;
 	export let width;
 	export let height;
