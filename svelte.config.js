@@ -7,9 +7,8 @@ const config = {
 	kit: {
 		target: '#svelte',
 		adapter: adapter(),
-		//paths: { base: '/undp-dli' },
+		paths: { base: '/undp-dli-iq' },
 		vite: {
-			// ssr: { noExternal: ['d3'] },
 			ssr: {
 				noExternal: ['d3']
 			},
