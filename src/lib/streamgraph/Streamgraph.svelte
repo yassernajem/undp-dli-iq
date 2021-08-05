@@ -239,19 +239,21 @@
 		</g>
 	{/if}
 </svg>
-{#each dataEventsGrouped as eventG, i}
-	<Popover
-		container="body"
-		title={timeFormat('%Y-%m-%d')(eventG[0])}
-		target={`event_${i}`}
-		trigger="hover"
-		placement={'top'}
-	>
-		{#each eventG[1] as event}
-			<p>{event.event}</p>
-		{/each}
-	</Popover>
-{/each}
+{#if series.length && width && height}
+	{#each dataEventsGrouped as eventG, i}
+		<Popover
+			container="body"
+			title={timeFormat('%Y-%m-%d')(eventG[0])}
+			target={`event_${i}`}
+			trigger="hover"
+			placement={'top'}
+		>
+			{#each eventG[1] as event}
+				<p>{event.event}</p>
+			{/each}
+		</Popover>
+	{/each}
+{/if}
 
 <style>
 	.stream {

@@ -8,7 +8,7 @@ const dataParsed = tsvParse(data, autoType);
 const eventsParsed = tsvParse(events, autoType);
 const tweetsParsed = tsvParse(tweets, autoType);
 
-const grouped = Object.fromEntries(group(dataParsed, (d) => d.language));
+const grouped = Object.fromEntries(group(dataParsed, (d) => d.language + '_' + d.gender));
 
 export async function get() {
 	return {
