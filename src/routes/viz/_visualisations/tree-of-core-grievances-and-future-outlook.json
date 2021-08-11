@@ -3,13 +3,13 @@
     "desc":"Lorem ipsum",
     "thumb":"mean-differences-on-key-dimensions.png",
     "sections":[
-        {"title":"Title one",
+        {"title":"Core Grievances",
             "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
-            "img":"coding-tree.png"
+            "img":"core-grievances.png"
         },
-        {"title":"Title two",
+        {"title":"Future Outlook",
             "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
-            "img":"coding-tree.png"
+            "img":"future-outlook.png"
         }
     ]
 }
