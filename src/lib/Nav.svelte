@@ -30,7 +30,6 @@
 				<li class="nav-item">
 					<a
 						href={base + '/about'}
-						download
 						class="btn btn-sm rounded-pill btn-outline-primary"
 						role="button">About the project</a
 					>
