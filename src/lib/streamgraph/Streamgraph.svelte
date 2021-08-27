@@ -208,6 +208,18 @@
 					on:mouseout={onMouseout}
 					on:mousemove={(e) => onMove(e, stream, i)}
 				/>
+				{#if view !== 'stackOffsetNone'}
+					<text font-size="10" x={0} y={streamHeight * i + 12} class="outline">
+						{stream.key}
+					</text>
+					<line
+						stroke="#DEE2E6"
+						x1={0}
+						x2={chartWidth}
+						y1={streamHeight * i + streamHeight}
+						y2={streamHeight * i + streamHeight}
+					/>
+				{/if}
 			{/each}
 		</g>
 		<g transform={`translate(${margin.left}, ${margin.top / 2})`}>
@@ -222,6 +234,8 @@
 					on:mouseout={lower}
 				/>
 			{/each}
+			<text font-size="10" x={0} y={2} class="outline" fill="#6c757d">events</text>
+			<line stroke="#DEE2E6" x1={0} x2={chartWidth} y1={margin.top / 2} y2={margin.top / 2} />
 		</g>
 		<g transform="translate({margin.left}, {chartHeight + margin.top})">
 			{#each xTicks as x, i}
