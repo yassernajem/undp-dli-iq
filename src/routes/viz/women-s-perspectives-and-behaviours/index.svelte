@@ -72,7 +72,7 @@
 		.filter((d) =>
 			selectedMacroCategory !== 'all' ? selectedMacroCategory === d.macro_dimension : true
 		)
-		.sort((a, b) => ascending(a.date, b.date));
+		.sort((a, b) => ascending(a.macro_dimension, b.macro_dimension));
 
 	$: dataLinechart = tweets.map((d) => {
 		return { y: d.tweets_count, x: new Date(d.date) };

@@ -20,7 +20,8 @@
 		extent,
 		curveStep,
 		curveMonotoneX,
-		curveLinear
+		curveLinear,
+		stackOrderNone
 	} from 'd3';
 	import { Tooltip, Popover } from 'sveltestrap';
 	import { getContext } from 'svelte';
@@ -77,7 +78,9 @@
 			const elm = data[1].find((d) => d[0] === key);
 			return elm ? elm[1] : 0;
 		})
-		.offset(offset[view])(dataFilled);
+		.offset(offset['stackOffsetNone'])(dataFilled);
+
+	$: streamHeight = chartHeight / series.length;
 
 	$: yScale = scaleLinear()
 		.domain([0, max(series, (d) => max(d, (d) => d[1]))])
@@ -117,11 +120,13 @@
 		dateStamp = null;
 	}
 
-	function onMove(event, stream) {
+	function onMove(event, stream, i) {
 		dateStamp = timeDay.round(xScale.invert(event.offsetX));
 		selectedData = stream.filter(
 			(d) => d.data[0].setHours(0, 0, 0, 0) === dateStamp.setHours(0, 0, 0, 0)
 		)[0];
+		selectedData.index = i;
+		selectedData.maxStream = max(stream, (d) => d[1]);
 	}
 
 	function raise(e) {
@@ -151,20 +156,57 @@
 			...a2.find((item) => item[prop].getTime() === itm[prop].getTime() && item)
 		}));
 	}
+
+	$: areaIndependentScale = function (stream, i) {
+		if (view === 'stackOffsetNone') {
+			return (areaStack = area()
+				//.defined((d) => !isNaN(d[1]))
+				.x((d) => xScale(d.data[0]))
+				.y0((d) => yScale(d[0]))
+				.y1((d) => yScale(d[1]))
+				.curve(curveLinear)(stream));
+		} else {
+			const yScaleLocal = scaleLinear()
+				.domain([0, max(stream, (d) => d[1])])
+				.range([streamHeight, 0]);
+
+			return (
+				area()
+					//.defined((d) => !isNaN(d[1]))
+					.x((d) => xScale(d.data[0]))
+					.y0(streamHeight * i + streamHeight)
+					.y1((d) => streamHeight * i + yScaleLocal(d[1]))
+					.curve(curveLinear)(stream)
+			);
+		}
+	};
+
+	$: toolTipYScale = function (selected, i, maxStream) {
+		if (view === 'stackOffsetNone') {
+			return yScale(selected);
+		} else {
+			const yScaleLocal = scaleLinear().domain([0, maxStream]).range([streamHeight, 0]);
+			if (maxStream) {
+				return streamHeight * i + yScaleLocal(selected);
+			} else {
+				return streamHeight * i + streamHeight;
+			}
+		}
+	};
 </script>
 
 <svg {width} {height}>
 	{#if series.length && width && height}
 		<g transform={`translate(${margin.left}, ${margin.top})`}>
-			{#each series as stream (stream.key)}
+			{#each series as stream, i (stream.key)}
 				<path
 					class="stream"
-					d={areaStack(stream)}
+					d={areaIndependentScale(stream, i, streamHeight, view)}
 					fill={colorScale(stream.key)}
 					class:notOver={pathOver && pathOver !== stream.key}
 					on:mouseover={() => onMouseover(stream.key)}
 					on:mouseout={onMouseout}
-					on:mousemove={(e) => onMove(e, stream)}
+					on:mousemove={(e) => onMove(e, stream, i)}
 				/>
 			{/each}
 		</g>
@@ -206,15 +248,15 @@
 					class="dateStampSelected"
 					x1={xScale(dateStamp)}
 					x2={xScale(dateStamp)}
-					y1={yScale(selectedData[0])}
-					y2={yScale(selectedData[1])}
+					y1={toolTipYScale(selectedData[0], selectedData.index)}
+					y2={toolTipYScale(selectedData[1], selectedData.index, selectedData.maxStream)}
 				/>
 				<text
 					text-anchor={xScale(dateStamp) > chartWidth / 2 ? 'end' : 'start'}
 					font-size="10"
 					dx={xScale(dateStamp) > chartWidth / 2 ? -3 : 3}
 					x={xScale(dateStamp)}
-					y={yScale(selectedData[1])}
+					y={toolTipYScale(selectedData[1], selectedData.index, selectedData.maxStream)}
 					class="outline"
 				>
 					{pathOver}
@@ -228,7 +270,7 @@
 					font-size="10"
 					dx={xScale(dateStamp) > chartWidth / 2 ? -3 : 3}
 					x={xScale(dateStamp)}
-					y={yScale(selectedData[1]) + 13}
+					y={toolTipYScale(selectedData[1], selectedData.index, selectedData.maxStream) + 13}
 					class="outline"
 				>
 					<tspan class="fw-bold">
