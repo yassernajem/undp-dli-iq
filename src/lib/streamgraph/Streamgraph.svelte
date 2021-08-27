@@ -18,7 +18,9 @@
 		timeDay,
 		utcDay,
 		extent,
-		curveStep
+		curveStep,
+		curveMonotoneX,
+		curveLinear
 	} from 'd3';
 	import { Tooltip, Popover } from 'sveltestrap';
 	import { getContext } from 'svelte';
@@ -97,7 +99,7 @@
 		.x((d) => xScale(d.data[0]))
 		.y0((d) => yScale(d[0]))
 		.y1((d) => yScale(d[1]))
-		.curve(curveStep);
+		.curve(curveLinear);
 
 	$: xTicks = xScale.ticks();
 
