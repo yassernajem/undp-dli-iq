@@ -9,25 +9,25 @@
 		{
 			"route": "/viz/women-s-perspectives-and-behaviours",
 			"title": "Women’s Perspectives and Behaviours",
-			"thumb": "emotions-across-timelines-and-twitterspheres.png",
+			"thumb": "women-s-perspectives-and-behaviours.png",
 			"section": "narrative"
 		},
 		{
 			"route": "/viz/a-closer-look-at-iraq-s-youth",
 			"title": "A Closer Look at Iraq’s Youth",
-			"thumb": "emotions-across-timelines-and-twitterspheres.png",
+			"thumb": "a-closer-look-at-iraq-s-youth.png",
 			"section": "narrative"
 		},
 		{
 			"route": "/viz/a-leap-into-the-future",
 			"title": "A Leap into the Future",
-			"thumb": "emotions-across-timelines-and-twitterspheres.png",
+			"thumb": "a-leap-into-the-future.png",
 			"section": "narrative"
 		},
 		{
 			"route": "/viz/iraq-s-twitterspace-demographics",
 			"title": "Iraq’s Twitterspace Demographics",
-			"thumb": "hate-speech-coding.png",
+			"thumb": "iraq-s-twitterspace-demographics.png",
 			"section": "methodology"
 		},
 		{
