@@ -25,6 +25,12 @@
 			"section": "narrative"
 		},
 		{
+			"route": "/viz/iraq-s-twitterspace-demographics",
+			"title": "Iraq’s Twitterspace Demographics",
+			"thumb": "hate-speech-coding.png",
+			"section": "methodology"
+		},
+		{
 			"route": "/viz/tree-of-core-grievances-and-future-outlook",
 			"title": "Tree of Core Grievances and Future Outlook",
 			"thumb": "hate-speech-coding.png",
