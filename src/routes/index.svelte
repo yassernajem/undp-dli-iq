@@ -1,16 +1,17 @@
 <script context="module">
 	import { base } from '$app/paths';
 	import { dev } from '$app/env';
-	const images = import.meta.globEager('./_images/*.png');
+	const imagesL = import.meta.globEager('./_images/*.png');
 
 	export async function load({ fetch, page }) {
+		console.log(base, page.path);
 		const baseUrl = dev ? page.path : base + page.path;
 		const getData = (resourceName) => fetch(resourceName).then((res) => res.json());
 		const data = await getData(`${baseUrl}visualisations.json`);
 		return {
 			props: {
 				visualisations: data.visualisations,
-				images
+				images: imagesL
 			}
 		};
 	}
@@ -22,8 +23,8 @@
 	export let visualisations;
 	export let images;
 
-	$: narrative = visualisations.filter(d=>d.section === 'narrative')
-	$: methodology = visualisations.filter(d=>d.section === 'methodology')
+	$: narrative = visualisations.filter((d) => d.section === 'narrative');
+	$: methodology = visualisations.filter((d) => d.section === 'methodology');
 </script>
 
 <div class="bg-primary" style="background-image:url('{dli_home}')">
@@ -76,7 +77,9 @@
 	</div>
 	<div class="row my-2">
 		<div class="col-12">
-			<h5 class="text-primary border-top border-light pt-3">Methodology and Twitter Demographics</h5>
+			<h5 class="text-primary border-top border-light pt-3">
+				Methodology and Twitter Demographics
+			</h5>
 		</div>
 	</div>
 	<div class="row mb-4 gy-4">
@@ -93,7 +96,7 @@
 </div>
 
 <style>
-	.headerImg{
+	.headerImg {
 		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: cover;
