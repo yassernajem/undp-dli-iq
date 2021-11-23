@@ -1,15 +1,17 @@
 {
-    "title":"Tree of Core Grievances and Future Outlook",
-    "desc":"Lorem ipsum",
-    "thumb":"mean-differences-on-key-dimensions.png",
-    "sections":[
-        {"title":"Core Grievances",
-            "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
-            "img":"core-grievances.png"
-        },
-        {"title":"Future Outlook",
-            "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
-            "img":"future-outlook.png"
-        }
-    ]
+	"title": "Tree of Core Grievances and Future Outlook",
+	"desc": "",
+	"thumb": "mean-differences-on-key-dimensions.png",
+	"sections": [
+		{
+			"title": "Core Grievances",
+			"description": "",
+			"img": "core-grievances.png"
+		},
+		{
+			"title": "Future Outlook",
+			"description": "",
+			"img": "future-outlook.png"
+		}
+	]
 }

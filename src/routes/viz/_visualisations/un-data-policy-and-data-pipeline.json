@@ -1,15 +1,12 @@
 {
-    "title":"UN Data Policy and Data Pipeline",
-    "desc":"Lorem ipsum",
-    "thumb":"mean-differences-on-key-dimensions.png",
-    "sections":[
-        {"title":"Title one",
-            "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
-            "img":"coding-tree.png"
-        },
-        {"title":"Title two",
-            "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
-            "img":"coding-tree.png"
-        }
-    ]
+	"title": "UN Data Policy and Data Pipeline",
+	"desc": "",
+	"thumb": "un-data-policy-and-data-pipeline.png",
+	"sections": [
+		{
+			"title": "Title one",
+			"description": "description",
+			"img": "un-data-policy-and-data-pipeline.png"
+		}
+	]
 }

@@ -1,11 +1,10 @@
 <script context="module">
 	import { base } from '$app/paths';
-    import { dev } from '$app/env';
-	
+	import { dev } from '$app/env';
+
 	const images = import.meta.globEager('./_images/*.png');
 	export async function load({ fetch, page }) {
-
-		const baseUrl = dev?page.path:base+page.path
+		const baseUrl = dev ? page.path : base + page.path;
 		const res = await fetch(`${baseUrl}.json`);
 		const json = await res.json();
 
@@ -28,6 +27,6 @@
 </script>
 
 <div class="container">
-	<PageIntro title={data.title} description={data.description} />
+	<PageIntro title={data.title} description={data.desc} />
 	<StaticViz sections={data.sections} />
 </div>

@@ -33,19 +33,19 @@
 		{
 			"route": "/viz/tree-of-core-grievances-and-future-outlook",
 			"title": "Tree of Core Grievances and Future Outlook",
-			"thumb": "hate-speech-coding.png",
+			"thumb": "tree-of-core-grievances-and-future-outlook.png",
 			"section": "methodology"
 		},
 		{
 			"route": "/viz/how-does-the-listening-tool-function",
 			"title": "How does the listening tool function?",
-			"thumb": "hate-speech-coding.png",
+			"thumb": "how-does-the-listening-tool-function.png",
 			"section": "methodology"
 		},
 		{
 			"route": "/viz/un-data-policy-and-data-pipeline",
 			"title": "UN Data Policy and Data Pipeline",
-			"thumb": "hate-speech-coding.png",
+			"thumb": "un-data-policy-and-data-pipeline.png",
 			"section": "methodology"
 		}
 	]

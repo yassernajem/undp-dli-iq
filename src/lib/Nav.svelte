@@ -1,7 +1,7 @@
 <script>
 	import { Collapse, NavbarToggler } from 'sveltestrap';
 	import { base } from '$app/paths';
-	import undpLogo from '$lib/assets/undp_logo.png';
+	import undpLogo from '$lib/assets/UNDP_logo.svg';
 	export let section;
 	let isOpen = false;
 	const toggle = () => (isOpen = !isOpen);
@@ -9,8 +9,10 @@
 
 <nav class="navbar navbar-expand-md sticky-top navbar-light bg-white shadow-sm">
 	<div class="container-fluid">
-		<a class="navbar-brand" sveltekit:prefetch href={base + '/'}>
-			<img src={undpLogo} class="me-3" alt="UNDP logo" width="auto" height="50" />
+		<a class="navbar-brand logo" sveltekit:prefetch href={base + '/'}>
+			<div class="bg-white border border-white">
+				<img src={undpLogo} alt="UNDP logo" width="auto" height="100" />
+			</div>
 		</a>
 		<!-- <button
 			class="navbar-toggler"
@@ -40,3 +42,10 @@
 		<!-- </div> -->
 	</div>
 </nav>
+
+<style>
+	.logo {
+		max-height: 60px;
+		overflow: visible;
+	}
+</style>

@@ -1,9 +1,8 @@
 <script>
 	import { base } from '$app/paths';
 	import { Icon } from 'sveltestrap';
-	export let title = 'My mock title super good';
-	export let description =
-		'Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur purus sit amet fermentum. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec ullamcorper nulla non metus auctor fringilla. Donec sed odio dui.';
+	export let title;
+	export let description;
 </script>
 
 <div class="row my-3">

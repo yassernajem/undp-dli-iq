@@ -75,7 +75,7 @@
 </script>
 
 <div class="container">
-	<PageIntro title={info.title} />
+	<PageIntro title={info.title} description={info.desc} />
 </div>
 <div class="bg-light w-100 containerViz">
 	<div class="container h-100 d-flex flex-column">

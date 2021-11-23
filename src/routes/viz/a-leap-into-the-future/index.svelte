@@ -34,8 +34,7 @@
 	let w;
 	let h;
 
-	let gender = Object.keys(emo)
-	.sort();
+	let gender = Object.keys(emo).sort();
 
 	let selectedGender = gender[0];
 
@@ -95,7 +94,7 @@
 </script>
 
 <div class="container">
-	<PageIntro title={info.title} />
+	<PageIntro title={info.title} description={info.desc} />
 </div>
 <div class="bg-light w-100 containerViz">
 	<div class="container h-100 d-flex flex-column">

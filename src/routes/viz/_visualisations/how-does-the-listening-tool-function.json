@@ -1,15 +1,12 @@
 {
-    "title":"How does the listening tool function?",
-    "desc":"Lorem ipsum",
-    "thumb":"mean-differences-on-key-dimensions.png",
-    "sections":[
-        {"title":"Title one",
-            "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
-            "img":"coding-tree.png"
-        },
-        {"title":"Title two",
-            "description":"Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis",
-            "img":"coding-tree.png"
-        }
-    ]
+	"title": "How does the listening tool function?",
+	"desc": "",
+	"thumb": "how-does-the-listening-tool-function.png",
+	"sections": [
+		{
+			"title": "Title one",
+			"description": "description",
+			"img": "pipeline.png"
+		}
+	]
 }
